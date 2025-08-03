@@ -53,19 +53,67 @@ WaymoLoc/
 - [Waymo Open Dataset](https://waymo.com/open/)
 
 ### Installation
+#### Install ROS
+1. Add the ROS Noetic Repository
+    ```
+    sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-noetic.list'
+    sudo apt update
+    sudo apt install curl
+    curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+    ```
 
+2. Install ROS Noetic
+    ```
+    sudo apt install ros-noetic-desktop-full
+    ```
+
+3. Source the ROS Environment
+    ```
+    echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+4. Install Development Tools and Dependencies
+    ```
+    sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+    ```
+
+5. Initialize rosdep
+    ```
+    sudo rosdep init
+    rosdep update
+    ```
+
+6. Create a Catkin Workspace
+    ```
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
+    catkin_make
+    ```
+
+7. Source the Workspace
+    ```
+    echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+8. Test ROS Core
+    ```
+    roscore
+    ```
+#### Install Project
 1. Clone the repository:
-    ```bash
+    ```
     git clone https://github.com/yourusername/wayloc.git
     cd wayloc
     ```
 2. Install dependencies:
-    ```bash
+    ```
     rosdep install --from-paths src --ignore-src -r -y
     pip install -r requirements.txt
     ```
 3. Build the workspace:
-    ```bash
+    ```
     catkin_make
     source devel/setup.bash
     ```
